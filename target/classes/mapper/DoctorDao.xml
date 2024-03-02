@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.aerial.dao.DoctorDao">
+
+    <select id="getDoctorList" resultType="com.example.aerial.pojo.Doctor">
+        select * from zhyy.doctor;
+    </select>
+
+    <select id="getDoctorByDoctorId" resultType="com.example.aerial.pojo.Doctor">
+        select * from zhyy.doctor where doctor_id=#{doctorId}
+    </select>
+
+    <insert id="addDoctor">
+        insert into zhyy.doctor(doctor_id, doctor_name, doctor_image, doctor_gender, doctor_phone, doctor_company,
+                                doctor_department, doctor_start_time, doctor_score, doctor_password, doctor_create_time,
+                                doctor_short_introduction, doctor_long_introduction)
+            value (#{doctor.doctorId}, #{doctor.doctorName}, #{doctor.doctorImage}, #{doctor.doctorGender},
+                   #{doctor.doctorPhone}, #{doctor.doctorCompany}, #{doctor.doctorDepartment},
+                   #{doctor.doctorStartTime}, #{doctor.doctorScore}, #{doctor.doctorPassword},
+                   #{doctor.doctorCreateTime},
+                   #{doctor.doctorShortIntroduction}, #{doctor.doctorLongIntroduction}
+            );
+    </insert>
+
+    <update id="updateDoctorScoreById">
+        update zhyy.doctor set doctor_score = #{score} where doctor_id = #{doctorId};
+    </update>
+
+    <update id="updateDoctorByDoctorId">
+        update zhyy.doctor
+        set doctor_name=#{doctor.doctorName},
+            doctor_company=#{doctor.doctorCompany},
+            doctor_gender=#{doctor.doctorGender},
+            doctor_image=#{doctor.doctorImage},
+            doctor_phone=#{doctor.doctorPhone},
+            doctor_department=#{doctor.doctorDepartment},
+            doctor_score=#{doctor.doctorScore},
+            doctor_start_time=#{doctor.doctorStartTime},
+            doctor_short_introduction=#{doctor.doctorShortIntroduction},
+            doctor_long_introduction=#{doctor.doctorLongIntroduction}
+        where doctor_id=#{doctor.doctorId}
+    </update>
+
+</mapper>

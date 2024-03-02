@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.aerial.dao.OldPeopleDao">
+
+<select id="getOldPeopleList" resultType="com.example.aerial.pojo.OldPeople">
+    select * from zhyy.old;
+    </select>
+
+<select id="getOldPeopleByOldPeopleId" resultType="com.example.aerial.pojo.OldPeople">
+    select * from zhyy.old where old_id=#{oldPeopleId}
+    </select>
+
+<insert id="addOldPeople">
+    insert into zhyy.old(old_id, old_name, old_age, old_gender, old_address, old_phone, old_create_time, old_uncomfortable_area, old_information_description)
+        value (#{oldPeople.oldId},#{oldPeople.oldName},#{oldPeople.oldAge},
+        #{oldPeople.oldGender},#{oldPeople.oldAddress},#{oldPeople.oldPhone},
+        #{oldPeople.oldCreateTime},#{oldPeople.oldUncomfortableArea},#{oldPeople.oldInformationDescription}
+        );
+    </insert>
+
+<update id="updateOldPeopleByOldPeopleId">
+    update zhyy.old
+    set old_name=#{oldPeople.oldName},
+        old_age=#{oldPeople.oldAge},
+        old_gender=#{oldPeople.oldGender},
+        old_address=#{oldPeople.oldAddress},
+        old_phone=#{oldPeople.oldPhone},
+        old_uncomfortable_area=#{oldPeople.oldUncomfortableArea},
+        old_information_description=#{oldPeople.oldInformationDescription}
+    where old_id = #{oldPeople.oldId}
+</update>
+
+</mapper>

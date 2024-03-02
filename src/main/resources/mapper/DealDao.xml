@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.aerial.dao.DealDao">
+
+<select id="getDealList" resultType="com.example.aerial.pojo.Deal">
+    select * from zhyy.deal;
+    </select>
+
+<select id="getDealByDealId" resultType="com.example.aerial.pojo.Deal">
+    select * from zhyy.deal where deal_id=#{dealId};
+    </select>
+
+<select id="getDealByOldId" resultType="com.example.aerial.pojo.Deal">
+    select * from zhyy.deal where deal_old_id=#{oldId};
+    </select>
+
+<select id="getDealByDoctorId" resultType="com.example.aerial.pojo.Deal">
+    select * from zhyy.deal where deal_doctor_id=#{doctorId};
+    </select>
+
+<insert id="addDeal">
+    insert into zhyy.deal(deal_id, deal_old_id, deal_doctor_id, deal_create_time, deal_end_time)
+        value (#{deal.dealId},#{deal.dealOldId},#{deal.dealDoctorId},#{deal.dealCreateTime},#{deal.dealEndTime}
+        );
+</insert>
+</mapper>
